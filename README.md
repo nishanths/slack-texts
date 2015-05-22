@@ -1,6 +1,6 @@
 # [slack-texts](https://www.npmjs.com/package/slack-texts)
 
-Receive text messages for conversations on Slack channels.
+Receive text messages for conversations on Slack channels via Twilio.
 
 # Usage
 
@@ -16,10 +16,10 @@ Use it in your project:
 // Require slack-texts
 var slack_texts = require('slack-texts');
 
-// Specify your Slack and Twilio tokens
+// Specify your Slack and Twilio keys
 // https://api.slack.com/applications
 // https://www.twilio.com/user/account/voice-sms-mms/getting-started
-var tokens = {
+var keys = {
 	slack		: { 
 		token	: "SLACK_TOKEN" 
 	},
@@ -45,7 +45,7 @@ var contacts = [
 var team_name = "goteam";
 
 // Initialize & start
-var slack_texts = slack_texts.init(tokens, channels, contacts, team_name);
+var slack_texts = slack_texts.init(keys, channels, contacts, team_name);
 slack_texts.start();
 
 ``` 
