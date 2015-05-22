@@ -1,5 +1,8 @@
 # [slack-texts](https://www.npmjs.com/package/slack-texts)
 
+![NPM version](https://img.shields.io/npm/v/slack-texts.svg)
+![License shield](https://img.shields.io/npm/l/slack-texts.svg)
+
 Receive text messages for conversations on Slack channels via Twilio.
 
 # Usage
