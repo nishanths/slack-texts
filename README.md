@@ -4,6 +4,8 @@ Receive text messages for conversations on Slack channels via Twilio.
 
 # Usage
 
+**WARNING:** Uses es6 features. Use the `--harmony` flag to run.
+
 Add slack-texts to your project:
 
 ```bash
@@ -13,12 +15,16 @@ $ npm install --save slack-texts
 Use it in your project:
 
 ```javascript
-// Require slack-texts
+// app.js
+
+/** Require slack-texts */
 var slack_texts = require('slack-texts');
 
-// Specify your Slack and Twilio keys
-// https://api.slack.com/applications
-// https://www.twilio.com/user/account/voice-sms-mms/getting-started
+/**
+ * Specify your Slack and Twilio keys
+ * https://api.slack.com/applications
+ * https://www.twilio.com/user/account/voice-sms-mms/getting-started
+ */
 var keys = {
 	slack		: { 
 		token	: "SLACK_TOKEN" 
@@ -30,24 +36,31 @@ var keys = {
 	} 
 };
 
-// Channels to monitor
+/** Channels to monitor */
 var channels = ["api-test", "android"];
 
-// List of contacts for Twilio to message
-// only the phone property is required
+/** List of contacts for Twilio to message 
+ *  Only the phone property is required
+ */
 var contacts = [
 	{ name: "Rachael", phone: "+15121111111" },
 	{ name: "Bruce", phone: "+15129999999" },
 	{ phone: "+5121236789" }
 ];
 
-// Slack team name
+/** Slack team name */
 var team_name = "goteam";
 
-// Initialize & start
+/** Initialize & start */
 var slack_texts = slack_texts.init(keys, channels, contacts, team_name);
 slack_texts.start();
 
+```
+
+Run:
+
+```bash
+$ node app.js --harmony
 ``` 
 
 # Contributing

@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/nishanths/slack-texts",
   "dependencies": {
+    "querystring": "^0.2.0",
     "request": "^2.55.0",
     "twilio": "^2.2.0",
     "ws": "^0.7.2"
