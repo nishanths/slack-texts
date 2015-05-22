@@ -1,4 +1,4 @@
-# slack-texts
+# [slack-texts](https://www.npmjs.com/package/slack-texts)
 
 Receive text messages for conversations on Slack channels.
 
@@ -6,13 +6,13 @@ Receive text messages for conversations on Slack channels.
 
 Add slack-texts to your project:
 
-```language: bash
+```bash
 $ npm install --save slack-texts
 ```
 
 Use it in your project:
 
-```language:javascript
+```javascript
 // Require slack-texts
 var slack_texts = require('slack-texts');
 
@@ -57,5 +57,5 @@ Pull requests are welcome. Also, feel free to submit an [issue](https://github.c
 
 # License
 
-The MIT License. Please see the LICENSE file at the root of the repository.
+The MIT License. Please see the [LICENSE](https://github.com/nishanths/slack-texts/blob/master/LICENSE) file at the root of the repository.
 
