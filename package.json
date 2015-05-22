@@ -1,0 +1,30 @@
+{
+  "name": "slack-texts",
+  "version": "0.1.0",
+  "description": "Receive text alerts for Slack messages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nishanths/slack-texts"
+  },
+  "keywords": [
+    "slack",
+    "text",
+    "sms",
+    "twilio"
+  ],
+  "author": "Nishanth Shanmugham <nishanth.gerrard@gmail.com> (http://nishanths.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nishanths/slack-texts/issues"
+  },
+  "homepage": "https://github.com/nishanths/slack-texts",
+  "dependencies": {
+    "request": "^2.55.0",
+    "twilio": "^2.2.0",
+    "ws": "^0.7.2"
+  }
+}
