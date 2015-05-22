@@ -1,1 +1,1 @@
-module.exports = require('./lib/slack-text.js');
+module.exports = require('./lib/slack-texts.js');
