@@ -1,16 +1,22 @@
 # [slack-texts](https://www.npmjs.com/package/slack-texts)
 
-[![NPM version](https://img.shields.io/npm/v/slack-texts.svg)]((https://www.npmjs.com/package/slack-texts))
-[![Downloads](https://img.shields.io/npm/dm/slack-texts.svg)]((https://www.npmjs.com/package/slack-texts))
+[![NPM version](https://img.shields.io/npm/v/slack-texts.svg)](https://www.npmjs.com/package/slack-texts)
+[![Downloads](https://img.shields.io/npm/dm/slack-texts.svg)](https://www.npmjs.com/package/slack-texts)
 [![License shield](https://img.shields.io/npm/l/slack-texts.svg)](https://github.com/nishanths/slack-texts/blob/master/LICENSE)
 
-Receive text messages for conversations on Slack channels via Twilio. Available on [npm](https://www.npmjs.com/package/slack-texts).
+Receive text messages for conversations on [Slack](http://slack.com) channels via Twilio. Available on [npm](https://www.npmjs.com/package/slack-texts).
+
+# Contents
+* [Usage](#usage)
+* [Features](#features)
+* [Documentation](#documentation)
+* [Dependencies](#dependencies)
+* [Contributing](#contributing)
+* [License](#license)
 
 # Usage
 
-Gettin started is really easy. 
-
-Add slack-texts to your project:
+Gettin started is really easy. Install slack-texts via npm:
 
 ```bash
 $ npm install --save slack-texts
@@ -25,20 +31,19 @@ var slack_texts = require('slack-texts');
 
 // Specify your Slack and Twilio keys
 var keys = {
-	slack		: { 
-		token	: "SLACK-TOKEN" 
-	},
-	twilio		: {
-		sid		: "TWILIO-SID",
-		token	: "TWILIO-TOKEN",
-		phone	: "TWILIO-PHONE" 
-	} 
+  slack:  { token	: "<SLACK-TOKEN>" },
+  twilio: { 
+    sid:   "<TWILIO-SID>",
+    token: "<TWILIO-TOKEN>",
+    phone: "<TWILIO-PHONE>" 
+  } 
 };
 
 // Configuration
 var options = { 
-  team_name: 'go-team',
+  team_name: 'go-team', 
   ignore_case_keywords: true,
+  print_intro: false,
   keywords: [ 'economy', 'responsive' ],
   channel_names_to_monitor: [ 'announcements', 'development' ],
   send_to_contacts: 
@@ -48,8 +53,8 @@ var options = {
 };
 
 // Initialize & start
-var slack_texts = slack_texts.init(keys, options);
-slack_texts.start();
+var st = slack_texts.init(keys, options);
+st.start();
 
 ```
 
@@ -58,7 +63,29 @@ Run:
 ```bash
 $ node app.js --harmony
 ``` 
-**Warning:** Uses es6 features. Use the `--harmony` flag to run.
+Since the module uses es6 features, please use the `--harmony` flag to run.
+
+
+# Features
+
+* Specify phone numbers to send messages to.
+* Monitor a specific list (or all) channels
+* Allow only messages that contain specific keywords 
+
+
+# Documentation
+
+The first argument to `slack_texts#init` should contain Twilio and Slack API keys as in the example above. All properties are requires.
+
+The second argument to `slack_texts#init` has more interesting properties:
+
+* `team_name` String of the team name to mention in the text messages. (optional, default: "")
+* `ignore_case_keywords` Boolean indicating whether to ignore case when filtering messages by keyword. (optional, default: true)
+* `print_intro` Boolean indicating whether to print introductory information on start up. (optional, default: false)
+* `keywords` Array of Strings of the keywords to filter messages by. If a message contains at least one of the keywords, it will be used for text notifications. If the Array is empty or the property is not specified, *no filtering* occurs. (optional, default: [])
+* `channel_names_to_monitor` Array of Strings of the keywords of the channels to listen to. If a new message is sent on these channels, it will be used for text notifications. If the Array is empty or the property is not specified, *all channels* are listened to. (optional, default: [])
+* `send_to_contacts` Array of Objects, with each object containing a `phone` property that is a phone number String. Any messages that meet the criteria above are sent as text messages to these phone numbers.
+
 
 # Dependencies
 
@@ -85,5 +112,5 @@ You can also create an [issue](https://github.com/nishanths/slack-texts/issues) 
 
 # License
 
-The MIT License. Please see the [LICENSE](https://github.com/nishanths/slack-texts/blob/master/LICENSE) file at the root of the repository.
+The MIT License. Please see the [LICENSE](https://github.com/nishanths/slack-texts/blob/master/LICENSE) file at the root of this repository.
 
