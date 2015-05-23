@@ -75,7 +75,7 @@ Since the module uses es6 features, please use the `--harmony` flag to run.
 
 # Documentation
 
-The first argument to `slack_texts#init` should contain Twilio and Slack API keys as in the example above. All properties are requires.
+The first argument to `slack_texts#init` should contain Twilio and Slack API keys as in the example above. All properties are required.
 
 The second argument to `slack_texts#init` has more interesting properties:
 
