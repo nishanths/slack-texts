@@ -1,8 +1,8 @@
 # [slack-texts](https://www.npmjs.com/package/slack-texts)
 
-![NPM version](https://img.shields.io/npm/v/slack-texts.svg)
-![Downloads](https://img.shields.io/npm/dm/slack-texts.svg)
-![License shield](https://img.shields.io/npm/l/slack-texts.svg)
+[![NPM version](https://img.shields.io/npm/v/slack-texts.svg)]((https://www.npmjs.com/package/slack-texts))
+[![Downloads](https://img.shields.io/npm/dm/slack-texts.svg)]((https://www.npmjs.com/package/slack-texts))
+[![License shield](https://img.shields.io/npm/l/slack-texts.svg)](https://github.com/nishanths/slack-texts/blob/master/LICENSE)
 
 Receive text messages for conversations on Slack channels via Twilio. Available on [npm](https://www.npmjs.com/package/slack-texts).
 
@@ -21,14 +21,9 @@ Use it in your project:
 ```javascript
 // app.js
 
-/** Require slack-texts */
 var slack_texts = require('slack-texts');
 
-/**
- * Specify your Slack and Twilio keys
- * https://api.slack.com/applications
- * https://www.twilio.com/user/account/voice-sms-mms/getting-started
- */
+// Specify your Slack and Twilio keys
 var keys = {
 	slack		: { 
 		token	: "SLACK-TOKEN" 
@@ -40,23 +35,20 @@ var keys = {
 	} 
 };
 
-/** Channels to monitor */
-var channels = ["api-test", "android"];
+// Configuration
+var options = { 
+  team_name: 'go-team',
+  ignore_case_keywords: true,
+  keywords: [ 'economy', 'responsive' ],
+  channel_names_to_monitor: [ 'announcements', 'development' ],
+  send_to_contacts: 
+   [ { phone: '+10000000000' },
+     { phone: '+19999999999' },
+     { phone: '+15555555555' } ]
+};
 
-/** List of contacts for Twilio to message 
- *  Only the phone property is required
- */
-var contacts = [
-	{ name: "Rachael", phone: "+15121111111" },
-	{ name: "Bruce", phone: "+15129999999" },
-	{ phone: "+15121236789" }
-];
-
-/** Slack team name */
-var team_name = "goteam";
-
-/** Initialize & start */
-var slack_texts = slack_texts.init(keys, channels, contacts, team_name);
+// Initialize & start
+var slack_texts = slack_texts.init(keys, options);
 slack_texts.start();
 
 ```
