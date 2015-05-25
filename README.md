@@ -56,6 +56,8 @@ var options = {
 var st = slack_texts.init(keys, options);
 st.start();
 
+// Do other things ... 
+
 ```
 
 Run: 
@@ -63,7 +65,7 @@ Run:
 ```bash
 $ node app.js --harmony
 ``` 
-Since the module uses es6 features, please use the `--harmony` flag to run.
+Since the module uses es6 features, please use the `--harmony` flag to run until node supports es6 features by default.
 
 
 # Features
@@ -75,16 +77,27 @@ Since the module uses es6 features, please use the `--harmony` flag to run.
 
 # Documentation
 
-The first argument to `slack_texts#init` should contain Twilio and Slack API keys as in the example above. All properties are required.
+Methods:
 
-The second argument to `slack_texts#init` has more interesting properties:
+#### slack_texts.init(..)
 
-* `team_name` String of the team name to mention in the text messages. (optional, default: "")
-* `ignore_case_keywords` Boolean indicating whether to ignore case when filtering messages by keyword. (optional, default: true)
-* `print_intro` Boolean indicating whether to print introductory information on start up. (optional, default: false)
-* `keywords` Array of Strings of the keywords to filter messages by. If a message contains at least one of the keywords, it will be used for text notifications. If the Array is empty or the property is not specified, *no filtering* occurs. (optional, default: [])
-* `channel_names_to_monitor` Array of Strings of the keywords of the channels to listen to. If a new message is sent on these channels, it will be used for text notifications. If the Array is empty or the property is not specified, *all channels* are listened to. (optional, default: [])
-* `send_to_contacts` Array of Objects, with each object containing a `phone` property that is a phone number String. Any messages that meet the criteria above are sent as text messages to these phone numbers.
+Initializes and returns a slack_texts instance. (It is a wrapper around a `new slack_texts(..)` call). The methods has two arguments:
+
+* `keys` The first argument of `slack_texts.init(..)` should contain Twilio and Slack API keys as in the example above. All properties in the keys object from the example are required.
+
+* `options` The second argument of `slack_texts.init(..)` has more interesting properties:
+
+  * `team_name` String of the team name to mention in the text messages. (optional, default: "")
+  * `ignore_case_keywords` Boolean indicating whether to ignore case when filtering messages by keyword. (optional, default: true)
+  * `print_intro` Boolean indicating whether to print introductory information on start up. (optional, default: false)
+  * `keywords` Array of Strings of the keywords to filter messages by. If a message contains at least one of the keywords, it will be used for text notifications. *To disable keyword filtering*, either ignore the property or pass in an empty array. (optional, default: [])
+  * `channel_names_to_monitor` Array of Strings of the keywords of the channels to listen to. If a new message is sent on these channels, it will be used for text notifications. *To listen to all channels*, either ignore the property or pass in an empty array. (optional, default: [])
+  * `send_to_contacts` Array of Objects, with each object containing a `phone` property that is a phone number String. Any messages that meet the criteria above are sent as text messages to these phone numbers.
+
+
+#### slack_texts.start()
+
+Starts listening for messages asynchronously. The method has no arguments.
 
 
 # Dependencies
