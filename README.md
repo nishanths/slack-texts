@@ -3,17 +3,7 @@
 Receive text messages for conversations on [Slack](http://slack.com)
 channels using Twilio.
 
-
-## Packages
-
-slack-texts is available as an npm package that you can import and run
-yourself (see [Quick start](#quick-start)).
-
-Alternatively, you simply use the command-line wrapper directly:
-[cmd/slack-texts](https://github.com/nishanths/slack-texts/blob/master/cmd/slack-texts).
-
-
-### Quick start
+## Quick start
 
 Install via npm:
 
@@ -75,7 +65,7 @@ Initializes and returns a new slack_texts instance. It the same as calling
 `new slack_texts(..)`. 
 
 ```
-var slack_texts = require('slack_texts');
+var slack_texts = require('slack-texts');
 var st = slack_texts.init(keys, options);
 ```
 
@@ -91,7 +81,7 @@ The two arguments are:
 	Configuration for the `slack_texts` instance.
 	The default values are shown below.
 	
-	```js`
+	```js
 	{
 	    // The team name to display in text messages.
 	    // Type: string.
@@ -131,11 +121,10 @@ Listens for new messages asynchronously, and dispatches text messages
 depending on the provided options. The method takes no arguments.
 
 ```
-var slack_texts = require('slack_texts');
+var slack_texts = require('slack-texts');
 var st = slack_texts.init(keys, options);
 st.start();
 ```
-
 
 ## Contributing
 

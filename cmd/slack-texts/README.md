@@ -1,8 +1,8 @@
 # cmd/slack-texts
 
-Command-line wrapper around slack-texts: <https://github.com/nishanths/slack-texts>.
+Command-line wrapper around `slack-texts`: <https://github.com/nishanths/slack-texts>.
 
-This is *not* available on npm. The package.json exists only to help install
+This is *not* available on npm. The `package.json` exists only to help install
 dependencies.
 
 ## Running
@@ -10,7 +10,11 @@ dependencies.
 1. Run `npm install`.
 1. Edit the .yml files in `config/` if needed.
 1. Add a file named .env as described in the Config section below.
-1. Run `node slack-texts.js [--team-name TEAM_NAME] [--quiet]`
+1. Run:
+
+  ```
+  node slack-texts.js [--team-name TEAM_NAME] [--quiet]
+  ```
 
 ## Config
 
