@@ -1,115 +1,143 @@
-# [slack-texts](https://www.npmjs.com/package/slack-texts)
+# [slack-texts](https://github.com/nishanths/slack-texts) [![NPM version](https://img.shields.io/npm/v/slack-texts.svg)](https://www.npmjs.com/package/slack-texts) [![License shield](https://img.shields.io/npm/l/slack-texts.svg)](https://github.com/nishanths/slack-texts/blob/master/LICENSE)
 
-[![NPM version](https://img.shields.io/npm/v/slack-texts.svg)](https://www.npmjs.com/package/slack-texts)
-[![Downloads](https://img.shields.io/npm/dm/slack-texts.svg)](https://www.npmjs.com/package/slack-texts)
-[![License shield](https://img.shields.io/npm/l/slack-texts.svg)](https://github.com/nishanths/slack-texts/blob/master/LICENSE)
+Receive text messages for conversations on [Slack](http://slack.com)
+channels using Twilio.
 
-Receive text messages for conversations on [Slack](http://slack.com) channels via Twilio. Available on [npm](https://www.npmjs.com/package/slack-texts).
 
-# Contents
-* [Usage](#usage)
-* [Features](#features)
-* [Documentation](#documentation)
-* [Dependencies](#dependencies)
-* [Contributing](#contributing)
-* [License](#license)
+## Packages
 
-# Usage
+slack-texts is available as an npm package that you can import and run
+yourself (see [Quick start](#quick-start)).
 
-Gettin started is really easy. Install slack-texts via npm:
+Alternatively, you simply use the command-line wrapper directly:
+[cmd/slack-texts](https://github.com/nishanths/slack-texts/blob/master/cmd/slack-texts).
 
-```bash
+
+### Quick start
+
+Install via npm:
+
+```sh
 $ npm install --save slack-texts
 ```
 
-Use it in your project:
+Import the package and specify keys:
 
-```javascript
-// app.js
-
+```js
 var slack_texts = require('slack-texts');
 
-// Specify your Slack and Twilio keys
 var keys = {
-  slack:  { token	: "<SLACK-TOKEN>" },
-  twilio: { 
-    sid:   "<TWILIO-SID>",
-    token: "<TWILIO-TOKEN>",
-    phone: "<TWILIO-PHONE>" 
-  } 
+    slack: {
+        token: '<slack-token>'
+    },
+    twilio: {
+        sid:   '<twilio-sid>',
+        token: '<twilio-token>',
+        phone: '<twilio-phone>'
+    }
 };
 
-// Configuration
-var options = { 
-  team_name: 'go-team', 
-  ignore_case_keywords: true,
-  print_intro: false,
-  keywords: [ 'economy', 'responsive' ],
-  channel_names_to_monitor: [ 'announcements', 'development' ],
-  send_to_contacts: 
-   [ { phone: '+10000000000' },
-     { phone: '+19999999999' },
-     { phone: '+15555555555' } ]
+var options = {
+    team_name:                'go-team',
+    ignore_case_keywords:     true,
+    keywords:                 ['economy', 'responsive'],
+    channel_names_to_monitor: ['announcements', 'development'],
+    send_to_contacts:         [
+        { phone: '+10000000000' },
+        { phone: '+19999999999' },
+        { phone: '+15555555555' }
+    ]
 };
 
-// Initialize & start
 var st = slack_texts.init(keys, options);
-st.start();
+st.start(); // Async call.
 
-// Do other things ... 
-
+// Do other stuff here, if necessary.
 ```
 
 Run: 
 
-```bash
-$ node app.js --harmony
+```sh
+$ node app.js
 ``` 
-Since the module uses es6 features, please use the `--harmony` flag to run until node supports es6 features by default.
 
+## Features
 
-# Features
-
-* Specify phone numbers to send messages to.
+* Specify phone numbers to send messages to
 * Monitor a specific list (or all) channels
-* Allow only messages that contain specific keywords 
+* Use only messages that contain specified keywords
+
+## Documentation
+
+#### init()
+
+Initializes and returns a new slack_texts instance. It the same as calling
+`new slack_texts(..)`. 
+
+```
+var slack_texts = require('slack_texts');
+var st = slack_texts.init(keys, options);
+```
+
+The two arguments are:
+
+1. keys:
+
+	Twilio and Slack API keys, as shown in the Quick start section. 
+	All fields are required.
+
+1. options: 
+
+	Configuration for the `slack_texts` instance.
+	The default values are shown below.
+	
+	```js`
+	{
+	    // The team name to display in text messages.
+	    // Type: string.
+	    team_name:                '',
+	
+	    // Whether to ignore case when filtering messages by keyword.
+	    // Type: boolean.
+	    ignore_case_keywords:     true,
+	
+	    // Keywords to filter messages by. If a messages contains any
+	    // of the keywords, it will be used for text notifications.
+	    // To disable keyword filtering, leave the property undefined
+	    // or use an empty array.
+	    //
+	    // Type: Array<string>.
+	    keywords:                 [],
+	
+	    // The channels to listen to. If a message is sent to these channels,
+	    // it will be used for text notifications (subject to other
+	    // configuration). To listen to all channels, leave the property
+	    // undefined or use an empty array.
+	    //
+	    // Type: Array<string>.
+	    channel_names_to_monitor: [],
+	
+	    // List of objects, each object containing a phone field (string).
+	    // Text messages will be sent to these phones.
+	    // 
+	    // Type: Array<Object>
+	    send_to_contacts:         []
+	}
+	```
+
+#### start()
+
+Listens for new messages asynchronously, and dispatches text messages
+depending on the provided options. The method takes no arguments.
+
+```
+var slack_texts = require('slack_texts');
+var st = slack_texts.init(keys, options);
+st.start();
+```
 
 
-# Documentation
-
-Methods:
-
-#### slack_texts.init(..)
-
-Initializes and returns a slack_texts instance. (It is a wrapper around a `new slack_texts(..)` call). The methods has two arguments:
-
-* `keys` The first argument of `slack_texts.init(..)` should contain Twilio and Slack API keys as in the example above. All properties in the keys object from the example are required.
-
-* `options` The second argument of `slack_texts.init(..)` has more interesting properties:
-
-  * `team_name` String of the team name to mention in the text messages. (optional, default: "")
-  * `ignore_case_keywords` Boolean indicating whether to ignore case when filtering messages by keyword. (optional, default: true)
-  * `print_intro` Boolean indicating whether to print introductory information on start up. (optional, default: false)
-  * `keywords` Array of Strings of the keywords to filter messages by. If a message contains at least one of the keywords, it will be used for text notifications. *To disable keyword filtering*, either ignore the property or pass in an empty array. (optional, default: [])
-  * `channel_names_to_monitor` Array of Strings of the keywords of the channels to listen to. If a new message is sent on these channels, it will be used for text notifications. *To listen to all channels*, either ignore the property or pass in an empty array. (optional, default: [])
-  * `send_to_contacts` Array of Objects, with each object containing a `phone` property that is a phone number String. Any messages that meet the criteria above are sent as text messages to these phone numbers.
-
-
-#### slack_texts.start()
-
-Starts listening for messages asynchronously. The method has no arguments.
-
-
-# Dependencies
-
-The following modules are required and are pulled automatically by installing slack-texts:
-
-* ws
-* querystring
-* twilio
-* request
-
-# Contributing
+## Contributing
 
 Pull requests are welcome.
 
@@ -119,11 +147,8 @@ Pull requests are welcome.
 4. Push to the branch (git push origin my-new-feature)
 5. Create new Pull Request
 
-
 You can also create an [issue](https://github.com/nishanths/slack-texts/issues) for new features and bug fixes.
 
-
-# License
+## License
 
 The MIT License. Please see the [LICENSE](https://github.com/nishanths/slack-texts/blob/master/LICENSE) file at the root of this repository.
-

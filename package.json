@@ -1,6 +1,6 @@
 {
   "name": "slack-texts",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Receive text alerts for Slack messages",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "sms",
     "twilio"
   ],
-  "author": "Nishanth Shanmugham <nishanth.gerrard@gmail.com> (http://nishanths.github.io)",
+  "author": "Nishanth Shanmugham <nishanth.gerrard@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/nishanths/slack-texts/issues"
