@@ -1,7 +1,11 @@
-# [slack-texts](https://github.com/nishanths/slack-texts) [![NPM version](https://img.shields.io/npm/v/slack-texts.svg)](https://www.npmjs.com/package/slack-texts) [![License shield](https://img.shields.io/npm/l/slack-texts.svg)](https://github.com/nishanths/slack-texts/blob/master/LICENSE)
+# [slack-texts](https://github.com/nishanths/slack-texts) 
+
+[![NPM version](https://img.shields.io/npm/v/slack-texts.svg)](https://www.npmjs.com/package/slack-texts) [![License shield](https://img.shields.io/npm/l/slack-texts.svg)](https://github.com/nishanths/slack-texts/blob/master/LICENSE)
 
 Receive text messages for conversations on [Slack](http://slack.com)
 channels using Twilio.
+
+You can import it as a package (see below), or use it directly from the [command-line](https://github.com/nishanths/slack-texts/blob/master/cmd/slack-texts).
 
 ## Quick start
 

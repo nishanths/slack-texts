@@ -55,7 +55,7 @@ to listen on all channels.
 
 ### 4.  Keywords
 
-The `config/keywords.yml` file has a list of keywords to look for. Only messages that have at least one of the keywords are used for SMS notifications. Example list:
+The `config/keywords.yml` file has a list of keywords to look for. Only messages that have at least one of the keywords are used for SMS notifications. Leave the file empty to use all messages without filtering for keywords. Example list:
 
 ````yml
 - "sms"

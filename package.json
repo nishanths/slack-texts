@@ -1,6 +1,6 @@
 {
   "name": "slack-texts",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Receive text alerts for Slack messages",
   "main": "index.js",
   "scripts": {
